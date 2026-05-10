@@ -22,7 +22,9 @@
             typst
             tinymist
             typstyle
+            roboto
           ];
+          TYPST_FONT_PATHS = "${roboto}/share/fonts";
         };
       }
     )
