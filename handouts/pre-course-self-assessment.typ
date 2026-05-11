@@ -32,6 +32,7 @@
 #let emp-title = upper(title)
 #let course-name = "2026 Basic Abstract Algebra Study"
 #let institution = "Coding Lab"
+#let version = "1.0.1"
 
 // theorion
 
@@ -238,6 +239,9 @@
       stack(
         spacing: 1.8em,
       )[
+        *Version* \
+        v#version
+      ][
         *Instructor* \
         #author
       ][
