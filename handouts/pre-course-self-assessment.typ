@@ -302,6 +302,10 @@
 ] <def:set-ext>
 
 #section[
+  #inline-note[
+    $A without B$ denotes the set of all elements in $A$ that are not in $B$.
+  ]
+
   #mcq(
     [
       Which of the following is distinct from the others?
@@ -669,10 +673,6 @@
 ]
 
 #section[
-  #inline-note[
-    $A without B$ denotes the set of all elements in $A$ that are not in $B$.
-  ]
-
   #question[
     Prove or disprove that the following holds for any two sets $A$ and $B$.
 
