@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this study material, please cite it using the metadata below."
+type: software
+title: "2026 Basic Abstract Algebra Study at Coding Lab"
+version: 0.1.0
+date-released: 2026-05-11
+repository-code: "https://github.com/coding-1ab/2026-basic-abstract-algebra-study"
+url: "https://github.com/coding-1ab/2026-basic-abstract-algebra-study"
+abstract: "Course repository for the 2026 Basic Abstract Algebra study program, including lectures, handouts, and assets"
+authors:
+- family-names: "Park"
+  given-names: "Hunee"
