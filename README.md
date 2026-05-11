@@ -1,4 +1,4 @@
-![](./assets/banner.svg)
+![](./assets/banner.png)
 
 # 2026 Basic Abstract Algebra Study
 
