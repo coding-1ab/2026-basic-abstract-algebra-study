@@ -32,7 +32,7 @@
 #let emp-title = upper(title)
 #let course-name = "2026 Basic Abstract Algebra Study"
 #let institution = "Coding Lab"
-#let version = "1.0.1"
+#let version = "1.0.2"
 
 // theorion
 
@@ -58,10 +58,17 @@
 #let section(..args) = {
   set enum(numbering: (..nums) => text(fill: primary-color, weight: "bold")[#numbering("(a)", ..nums)])
 
+  context {
+    let n = section-counter.get().at(0) + 1
+    heading(level: 2, outlined: true, bookmarked: true, numbering: none, supplement: [qbookmark])[Q#n]
+  }
+
   exm-section(number: true, display: "Q1. ", color: primary-color, "", ..args)
 
   v(20pt)
 }
+
+#show heading.where(supplement: [qbookmark]): it => place(hide(it.body))
 
 #let qref(lbl) = {
   // use `link` to make it clickable
@@ -871,6 +878,8 @@
     #proof[
       Let $g, h : ZZ -> ZZ$ be functions defined by $g(x) = x$ and $h(x) = -x$, and let $f : ZZ -> ZZ$ be defined by $f(x) = x^2$. For any $x in ZZ$, $(f compose g)(x) = f(x) = x^2$ and $(f compose h)(x) = f(-x) = (-x)^2 = x^2$, so $f compose g = f compose h$. However $g != h$, since for instance $g(1) = 1 != -1 = h(1)$.
     ]
+
+    However, the above statment is true if $f$ is injective.
   ]
 ]
 
