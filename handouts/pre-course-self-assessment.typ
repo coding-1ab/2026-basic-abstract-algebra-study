@@ -32,11 +32,16 @@
 #let emp-title = upper(title)
 #let course-name = "2026 Basic Abstract Algebra Study"
 #let institution = "Coding Lab"
-#let version = "1.0.2"
+#let version = "1.0.3"
 
 // theorion
 
 #show: show-theorion
+
+// Make every theorion frame share `theorem-counter` (the default counter behind
+// definition, note, lemma, proposition, …) and count linearly across sections
+// instead of inheriting two heading levels.
+#set-inherited-levels(0)
 
 #let (_, inline-note-box, inline-note, show-inline-note) = make-frame(
   "inline-note",
@@ -273,24 +278,38 @@
 
   In the following questions, _prove or disprove_ means you need to either show a correct logical proof of a given statement or provide at least one counterexample that disproves the statement. Describe each deduction step by step, citing the relevant definition or fact at each step.
 
-  As a tiny example of a proof, consider the following statement.
+  As a tiny example of a proof answer, consider the following statement.
 
   #align(center)[
     For any integers $a$ and $b$, if $a$ and $b$ are both even, then so is $a + b$.
   ]
 
-  #proof[
-    Assume $a$ and $b$ are even integers. By the definition of an even integer, there exist integers $k$ and $l$ such that $a = 2 k$ and $b = 2 l$. Then $a + b = 2 k + 2 l = 2 (k + l)$, and since $k + l$ is an integer, $a + b$ is even by the same definition.
+  #block(
+    stroke: (thickness: 0.5pt, dash: "dashed"),
+    inset: (top: 8.5pt, bottom: 8.5pt, left: 7.5pt, right: 7.5pt),
+  )[
+    The above statement is true.
+
+    #proof[
+      Assume $a$ and $b$ are even integers. By the definition of an even integer, there exist integers $k$ and $l$ such that $a = 2 k$ and $b = 2 l$. Then $a + b = 2 k + 2 l = 2 (k + l)$, and since $k + l$ is an integer, $a + b$ is even by the same definition.
+    ]
   ]
 
-  As a tiny example of a disproof, consider the following statement.
+  As a tiny example of a disproof answer, consider the following statement.
 
   #align(center)[
     For any integers $a$ and $b$, if $a + b$ is even, then $a$ and $b$ are both even.
   ]
 
-  #proof[
-    Take $a = 1$ and $b = 1$. Both are odd, but $a + b = 2$ is even. Hence the statement is false.
+  #block(
+    stroke: (thickness: 0.5pt, dash: "dashed"),
+    inset: (top: 8.5pt, bottom: 8.5pt, left: 7.5pt, right: 7.5pt),
+  )[
+    The above statement is false.
+
+    #proof[
+      Take $a = 1$ and $b = 1$. Both are odd, but $a + b = 2$ is even. Hence the statement is false.
+    ]
   ]
 
   It is highly encouraged to write down full sentences like the above samples, rather than just throwing out a few symbols or numbers without explaining why.
@@ -400,7 +419,7 @@
 
     Answer: #blank(50pt, "", answer: $40522423$)
   ][
-    For a positive integer $n$, let $ZZ_n + ZZ_n$ denote the set ${ a + b | a, b in ZZ_n }$. We show that $ZZ_n + ZZ_n = ZZ_(2 n - 1)$ for every positive integer $n$, from which the answer follows directly.
+    For a positive integer $n$, let $ZZ_n + ZZ_n$ denote the set ${ a + b | a, b in ZZ_n }$. We show that $ZZ_n + ZZ_n = ZZ_(2 n - 1)$ for every positive integer $n$ by the extensionality (@def:set-ext), from which the answer follows directly.
 
     #proof[
 
@@ -794,6 +813,10 @@
 ]
 
 #section[
+  #inline-note[
+    An induction here refers to the mathematical induction.
+  ]
+
   #question[
     Let $A_i$ be a singleton for $i = 1, ..., n$ for a positive integer $n$. Show by induction that $A_1 times ... times A_n$ is also a singleton.
   ][
@@ -802,9 +825,13 @@
     #proof[
       In the case where $n = 1$, $product^1_i A_i = A_1$ is trivially a singleton, by assumption.
 
-      Now, assume that $product^k_i A_i$ is a singleton for some positive integer $k$. As it is a singleton, it must have a unique element $* in product^k_i A_i$. Also, $A_(k + 1)$ is a singleton as we have assumed that every $A_i$ is a singleton. Let $*'$ denote its only element.
+      Now, assume that $product^k_i A_i$ is a singleton for some positive integer $k$, so that $abs(product^k_i A_i) = 1$. By assumption, $A_(k + 1)$ is also a singleton, so $|A_(k + 1)| = 1$.
 
-      Since $product^(k + 1)_i A_i = [product^k_i A_i] times A_(k + 1)$, we can break down the entire product into a binary product of two singletons. As both sets have only one element each, the only possible pair is $(*, *')$, thus $[product^k_i A_i] times A_(k + 1) = { (*, *') }$, showing that $product^(k + 1)_i A_i$ is also a singleton.
+      Since the size of a product of two finite sets is the product of their sizes, we have the following, showing that $product^(k + 1)_i A_i$ is also a singleton.
+
+      $
+        abs(product^(k + 1)_i A_i) = abs([product^k_i A_i] times A_(k + 1)) = abs(product^k_i A_i) dot abs(A_(k + 1)) = 1 dot 1 = 1
+      $
 
       By induction, we conclude that $product^n_i A_i$ is a singleton for any positive integer $n$.
     ]
@@ -871,7 +898,7 @@
 
 #section[
   #question[
-    Prove or disprove that if $f compose g = f compose h$, then $g = h$ for any functions $f$, $g$ and $h$.
+    Prove or disprove that if $f compose g = f compose h$, then $g = h$ for any functions $f : Y -> Z$, $g, h : X -> Y$.
   ][
     #falsestmt
 
@@ -879,7 +906,7 @@
       Let $g, h : ZZ -> ZZ$ be functions defined by $g(x) = x$ and $h(x) = -x$, and let $f : ZZ -> ZZ$ be defined by $f(x) = x^2$. For any $x in ZZ$, $(f compose g)(x) = f(x) = x^2$ and $(f compose h)(x) = f(-x) = (-x)^2 = x^2$, so $f compose g = f compose h$. However $g != h$, since for instance $g(1) = 1 != -1 = h(1)$.
     ]
 
-    However, the above statment is true if $f$ is injective.
+    However, the above statment is true if $f$ is injective. Can you prove it?
   ]
 ]
 
