@@ -32,7 +32,7 @@
 #let emp-title = upper(title)
 #let course-name = "2026 Basic Abstract Algebra Study"
 #let institution = "Coding Lab"
-#let version = "1.0.3"
+#let version = "1.0.4"
 
 // theorion
 
@@ -687,6 +687,8 @@
 ]
 
 #section[
+  #[]<q:p-zxz>
+
   #question[
     What is the value of $|cal(P)(ZZ_2 times ZZ_5)|$?
 
@@ -827,7 +829,7 @@
 
       Now, assume that $product^k_i A_i$ is a singleton for some positive integer $k$, so that $abs(product^k_i A_i) = 1$. By assumption, $A_(k + 1)$ is also a singleton, so $|A_(k + 1)| = 1$.
 
-      Since the size of a product of two finite sets is the product of their sizes, we have the following, showing that $product^(k + 1)_i A_i$ is also a singleton.
+      Since the size of a product of two finite sets is the product of their sizes (See #qref(<q:p-zxz>)), we have the following, showing that $product^(k + 1)_i A_i$ is also a singleton.
 
       $
         abs(product^(k + 1)_i A_i) = abs([product^k_i A_i] times A_(k + 1)) = abs(product^k_i A_i) dot abs(A_(k + 1)) = 1 dot 1 = 1
