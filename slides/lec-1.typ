@@ -84,7 +84,7 @@
 
   Abiria #h(1em)
 
-  July 23
+  #datetime(year: 2026, month: 5, day: 17).display("[month repr:long] [day], [year]")
 ]
 
 = What is algebra about?
@@ -149,13 +149,40 @@
 
 === Examples
 
-- $A = { x^2 | x in ZZ }$
+- $A_1 = { x^2 | x in ZZ }$
 
-- $A = { x | f(x) = g(x) }$
+- $A_2 = { x in RR | -2 < x, x < 10 }$
+
+- $A_3 = { x in RR | x != 0 }$
+
+- $A_4 = { (x, y) | x in RR, y in RR }$
+
+- $A_5 = { 2x + 3y | x in ZZ, y in ZZ }$
+
+- $A_6 = { x in CC | x^4 = 1 }$
+
+- $A_7 = { (x, sin(x)) | x in RR }$
+
+- $A_8 = { x in CC | |x| = 1 }$
+
+- $A_9 = { { x } | x in NN }$
+
+- $A_10 = { A in cal(P)(NN) | forall x in A ( x "is prime" ) }$
+
+// - $A_11 = { x | x "is an infinite sequence where" x_i "is integers" }$
 
 == Subsets
 
 - $A subset B := forall x (x in A -> x in B)$
+
+=== Examples
+
+- $A = { x in ZZ | x "is a multiple of" 10 }$ \
+  $B = { x in ZZ | x "is a multiple of " 100 }$
+  - $A subset B$
+
+- $A = { x in CC | x^1212 = 1 }$, $B = { x in CC | x^2424 = 1 }$
+  - $A subset B$
 
 == Axiom of Extensionality
 
