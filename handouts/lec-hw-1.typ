@@ -35,7 +35,7 @@
   - $ZZ$: A set of all integers.
   - $ZZ^+$: A set of all positive integers. i.e., $ZZ^+ = { 1, 2, 3, ... }$.
   - $ZZ_n$: A set of non-negative integers from $0$ to $n - 1$ for some positive integer $n$. For instance, $ZZ_4 = { 0, 1, 2, 3 }$.
-  - $n ZZ$: A set given as ${ n x | x in ZZ }$. That is, the set of all multiples of $n$ in $ZZ$. For instance, $5 ZZ = { ..., -10, -5, 0, 5, 10, ... }$.
+  - $n ZZ$: A set given as ${ n x | x in ZZ }$ for an integer $n$. i.e., the set of all multiples of $n$ in $ZZ$. For instance, $5 ZZ = { ..., -10, -5, 0, 5, 10, ... }$.
   - $QQ$: A set of all rational numbers.
   - $RR$: A set of all real numbers.
   - $RR^+$: A set of all positive real numbers.
@@ -142,6 +142,8 @@
 
       By extensionality, we conclude that $2 ZZ + 3 ZZ = ZZ$.
     ]
+
+    In fact, any two coprime integers $n$ and $m$ have the same property. i.e., $n perp m -> n ZZ + m ZZ = ZZ$ for integers $n$, $m$. Moreover, not only $ZZ$ but all principal ideal domains have the same property.
   ]
 ]
 
@@ -259,8 +261,12 @@ $ A triangle B subset C $
       #proof[
         Let us rephrase the statement first. The original statement is $M(a) != M(b) -> M(a) inter M(b) = nothing$ for all $a, b in ZZ$. Its contrapositive is $M(a) inter M(b) != nothing -> M(a) = M(b)$ for all $a, b in ZZ$.
 
-        Assume $M(a) inter M(b) != nothing$ for some $a, b in ZZ$. As it is not empty, there exists at least one element $c$ in $M(a) inter M(b)$.
+        Assume $M(a) inter M(b) != nothing$ for some $a, b in ZZ$. As it is not empty, there exists at least one element $c$ in $M(a) inter M(b)$. By the definition, $c equiv a thick (mod n)$ and $c equiv b thick (mod n)$.
+
+        If $x$ is an element of $M(a)$, then $x equiv a equiv c equiv b thick (mod n)$ by the symmetry and transitivity of the congruence. Hence, $x$ is an element of $M(b)$. Similarly, if $x$ is an element of $M(b)$, then $x equiv b equiv c equiv a thick (mod n)$, showing that $M(a) = M(b)$ as desired.
       ]
+
+      If you're up for a challenge, try showing the symmetry and transitivity of the congruence used here.
     ]
 
   + #question[
