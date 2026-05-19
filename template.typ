@@ -1,5 +1,6 @@
 #import "./exm/lib/lib.typ": (
-  blank, colorgreen, colorred, docmode, mcq as exm-mcq, question, section as exm-section, section-counter,
+  blank, colorgreen, colorred, docmode, mcq as exm-mcq, question as exm-question, section as exm-section,
+  section-counter,
 )
 #import "@preview/theorion:0.6.0": cosmos, set-inherited-levels, show-theorion, theorem-counter
 #import cosmos.simple: make-frame, render-fn
@@ -43,12 +44,35 @@
 
 // exm
 
-#let section(..args) = {
+#let lv-easy = (text: "EASY", color: rgb("#5fad4e"))
+#let lv-hard = (text: "HARD", color: cl-grapefruit)
+#let lv-levi = (
+  text: "LEVI",
+  color: gradient.linear(
+    rgb("#fe7ba7"),
+    rgb("#b290ff"),
+  ),
+)
+
+#let section(level: none, ..args) = {
   set enum(numbering: (..nums) => text(fill: primary-color, weight: "bold")[#numbering("(a)", ..nums)])
 
   context {
     let n = section-counter.get().at(0) + 1
     heading(level: 2, outlined: true, bookmarked: true, numbering: none, supplement: [qbookmark])[Q#n]
+  }
+
+  // level label on the right margin
+  if level != none {
+    place(
+      right,
+      dy: 0pt,
+      rect(
+        stroke: 1.2pt + level.color,
+        radius: 2pt,
+        inset: (x: 6pt, y: 4pt),
+      )[#box(text(fill: level.color, weight: "semibold", size: 0.8em, font: title-font)[#str(level.text)])],
+    )
   }
 
   exm-section(number: true, display: "Q1. ", color: primary-color, "", ..args)
@@ -64,7 +88,11 @@
   ]
 }
 
-#let question = question.with(ansbox: show-answers, color: solution-color, color-text: text-color)
+#let question = exm-question.with(
+  ansbox: show-answers,
+  color: solution-color,
+  color-text: text-color,
+)
 
 #let long-answer(body) = {
   if show-answers {
