@@ -210,43 +210,47 @@
   ]
 ]
 
-#section(level: lv-hard)[
+#definition[Symmetric difference][
+  $A triangle B$ is a binary set operation given by $(A without B) union (B without A)$ and is called a _symmetric difference_ between $A$ and $B$.
+]
+
+#section(level: lv-levi)[
   #problem-by(escentia07)
 
   #question[
-    Prove that $A triangle B subset C <=> A inter B subset (A inter B) union C$, where $A triangle B = (A \\ B) union (B \\ A)$.
-
-    #v(12pt)
+    Prove or disprove that $A triangle B subset C$ if and only if $A inter B subset (A inter B) union C$.
   ][
-    *Forward.* Let $x$ be an arbitrary element such that $x in A union B$. We consider two mutually exclusive cases:
+    #truestmt
 
-1. *Case 1 ($x in A inter B$):* \
-   If $x$ is in the intersection, it trivially follows that $x in (A inter B) union C$.
+    #proof[
+      *Forward.* Let $x$ be an arbitrary element such that $x in A union B$. We consider two mutually exclusive cases:
 
-2. *Case 2 ($x not in A inter B$):* \
-   Since $x in A union B$ but $x in.not A inter B$, by the definition of symmetric difference, $x in A triangle B$. \
-   By our assumption ($A triangle B subset C$), this implies $x in C$. \
-   Therefore, $x in (A inter B) union C$.
+      + *Case 1 ($x in A inter B$)* \
+        If $x$ is in the intersection, it trivially follows that $x in (A inter B) union C$.
 
-Since $x in (A inter B) union C$ holds true in both cases, we conclude:
-$ A union B subset (A inter B) union C $
+      + *Case 2 ($x in.not A inter B$)* \
+        Since $x in A union B$ but $x in.not A inter B$, by the definition of symmetric difference, $x in A triangle B$. By our assumption ($A triangle B subset C$), this implies $x in C$. Therefore, $x in (A inter B) union C$.
 
-*Backward.* Let $x$ be an arbitrary element such that $x in A triangle B$. By definition of the symmetric difference:
-$ x in A union B quad "and" quad x in.not A inter B $
+      Since $x in (A inter B) union C$ holds true in both cases, we conclude:
 
-By our assumption ($A union B subset (A inter B) union C$), since $x in A union B$, it must hold that:
-$ x in (A inter B) union C $
+      $ A union B subset (A inter B) union C $
 
-This statement means that $x in A inter B$ or $x in C$. \
-However, we already established that $x in.not A inter B$. Therefore, it must be true that:
-$ x in C $
+      *Backward.* Let $x$ be an arbitrary element such that $x in A triangle B$. By definition of the symmetric difference:
 
-Consequently, we conclude:
-$ A triangle B subset C $
+      $ x in A union B quad "and" quad x in.not A inter B $
+
+      By our assumption ($A union B subset (A inter B) union C$), since $x in A union B$, it must hold that:
+
+      $ x in (A inter B) union C $
+
+      This statement means that $x in A inter B$ or $x in C$. However, we already established that $x in.not A inter B$. Therefore, it must be true that $x in C$.
+
+      Consequently, we conclude:
+
+      $ A triangle B subset C $
+    ]
   ]
-    
 ]
-
 
 #section(level: lv-levi)[
   For an integer $n$, let $M(k)$ denote the set ${ x | x equiv k thick (mod n) }$. Let $P$ the set given by $P = { M(k) | k in ZZ }$.
