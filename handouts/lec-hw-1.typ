@@ -6,12 +6,12 @@
 
 // metadata
 #let author = "Abiria"
-#let date = datetime(year: 2026, month: 5, day: 18)
+#let date = datetime(year: 2026, month: 5, day: 21)
 #let title = "Lecture 1 Homeworks"
 #let emp-title = upper(title)
 #let course-name = "2026 Basic Abstract Algebra Study"
 #let institution = "Coding Lab"
-#let version = "0.0.0"
+#let version = "1.0.0"
 
 #show: template.with(
   author: author,
