@@ -87,8 +87,6 @@
 #section(level: lv-easy)[
   #mcq(
     [
-      Which of the following is distinct from the others?
-
       Let $A$ and $B$ be two sets. Let $A(x)$ mean $x$ is an element of $A$, and $B(x)$ mean $x$ is an element of $B$.
 
       Which of the following is equivalent to saying that $A subset B$?
@@ -195,7 +193,7 @@
     ]
 
     #proof[
-      For two positive integers $n$ and $m$, assume $x$ is an element of $mu_n$. By the definition, we have $x^n = 1$. By raising both sides to the $m$th power, we get $(x^n)^m = x^(n m) = 1^m = 1$. From here, we conclude that $x$ is a solution to the equation $x^(n m) = 1$, thus $x in mu_(n m)$.
+      For two positive integers $n$ and $m$, assume $x$ is an element of $mu_n$. By the definition, we have $x^n = 1$. By raising both sides to the $m$-th power, we get $(x^n)^m = x^(n m) = 1^m = 1$. From here, we conclude that $x$ is a solution to the equation $x^(n m) = 1$, thus $x in mu_(n m)$.
 
       Therefore, $mu_n$ is a subset of $mu_(n m)$.
     ]
@@ -210,7 +208,7 @@
       cf. PCSA Q4.
     ]
   ][
-    Or, see the solution of PCSA Q4.
+    The following is the same as the solution of PCSA Q4.
 
     #proof[
 
@@ -279,7 +277,7 @@
 ]
 
 #section(level: lv-levi)[
-  For an integer $n$, let $M(k)$ denote the set ${ x | x equiv k thick (mod n) }$. Let $P$ the set given by $P = { M(k) | k in ZZ }$.
+  For an integer $n$, let $M(k)$ denote the set ${ x | x equiv k thick (mod n) }$. Let $P$ be the set given by $P = { M(k) | k in ZZ }$.
 
   + #question[
       Show that every two distinct elements of $P$ are disjoint.
@@ -316,7 +314,7 @@
         By extensionality, we conclude that $M(a) + M(b) = M(a + b)$.
       ]
 
-      In such a case, we often say that _the operation is well-defined on cosets_. A subgroup that has such a property, such as $n ZZ$, is called _normal_. Moreover, we can now view $M$ as a special kind of function, called a _canonical homomorphism to the quotient_.
+      In such a case, we often say that _the operation is well-defined on cosets_. The subgroups for which this coset operation is well-defined are exactly the _normal_ ones; in an abelian group such as $ZZ$, every subgroup, including $n ZZ$, is normal. Moreover, we can now view $M$ as a special kind of function, called a _canonical homomorphism to the quotient_.
     ]
 ]
 
@@ -387,7 +385,7 @@
 
     Keep in mind that multiplication of a complex number is a _rotation_ on the complex plane. Thus, what we've just shown here is that the angle (_argument_) of $x$ does not divide the circle evenly. Observe, or at least, feel how the problem of evenly dividing a circle turns into a problem of solving a solution to a modular congruence. The roots of unity can be visualized as an exact rotations of a circle, justifying why they are called _cyclic groups_.
 
-    Of course, there is a shortcut to the above result. A corollary of the @thm:niven guarantees that for a rational number other than $0$, $1$, and $-1$, its $arctan$ is always an irrational multiple of $pi$. In the above case, $arctan(3/4)$ should be an irrational multiple of $pi$, which makes it never reaches $1$ no matter how many times it rotates.
+    Of course, there is a shortcut to the above result. A corollary of the @thm:niven guarantees that for a rational number other than $0$, $1$, and $-1$, its $arctan$ is always an irrational multiple of $pi$. In the above case, $arctan(3/4)$ should be an irrational multiple of $pi$, which makes it never reach $1$ no matter how many times it rotates.
 
     #theorem[Niven][
       If $theta in [0, pi / 2]$ and both $theta / pi$ and $sin theta$ are rational, then $sin theta$ is either $0$, $1$, or $1/2$.
@@ -396,16 +394,16 @@
     There is also a way more 'algebraic' proof as well.
 
     #proof[
-      Let $x = 4/5 + 3/5 i$ and claim it's an $n$-th root of unity for some $n in ZZ^+$. Hence we get $(4 + 3 i)^n = 5^n$. As $5$ can be factored into Gaussian integers $(2 + i)(2 - i)$ and so on, we have the following prime factorization.
+      Let $x = 4/5 + 3/5 i$ and claim it's an $n$-th root of unity for some $n in ZZ^+$. Hence we get $(4 + 3 i)^n = 5^n$. In the Gaussian integers, both sides factor into primes: since $(2 - i)^2 = 3 - 4 i$, we have $4 + 3 i = i (2 - i)^2$, while $5 = (2 + i)(2 - i)$. Raising each to the $n$-th power gives the following.
 
       $ i^n (2 - i)^(2 n) = (2 + i)^n (2 - i)^n $
 
-      From here, the right hand side has $(2 + i)$ as a prime $n$ times, while the left hand side does not contain it. Recall that a prime factorizations by Gaussian integers must be unique up to units. As $n != 0$ by the @def:root-of-unity, this is a contradiction. Therefore, $x$ is not an $n$-th root of unity for any positive integer $n$.
+      Note that $(2 + i)$ and $(2 - i)$ are non-associate primes. From here, the right hand side has $(2 + i)$ as a prime $n$ times, while the left hand side does not contain it. Recall that a prime factorization by Gaussian integers must be unique up to units. As $n != 0$ by the @def:root-of-unity, this is a contradiction. Therefore, $x$ is not an $n$-th root of unity for any positive integer $n$.
     ]
 
-    From here, we have two different sets $T$ and $mu_oo$. However, as you might have already guessed, $mu_oo$ is a subset of $T$. If $x$ is a solution to $x^n = 1$ for some positive integer $n$, we have $|x^n| = |1|$ by taking absoluates on each side, from which we get $|x^n| = |x|^n = 1$. The only real solution to it is $|x| = 1$.
+    From here, we have two different sets $T$ and $mu_oo$. However, as you might have already guessed, $mu_oo$ is a subset of $T$. If $x$ is a solution to $x^n = 1$ for some positive integer $n$, we have $|x^n| = |1|$ by taking absolute values on each side, from which we get $|x^n| = |x|^n = 1$. The only real solution to it is $|x| = 1$.
 
-    In fact, $mu_oo$ forms a _subgroup_ of $T$ under multiplication. Moreover, every $mu_n$ is itself a subgroups of $mu_oo$ and called _cyclic_ as every element of $mu_n$ can be written as an exponentiation of _a primitive $n$-th root of identity_. Finally, $T$, as you might have imagined, is called the _circle group_, and is also a subgroup of a much larger group $U(CC)$, called the _unit group of the complex ring_.
+    In fact, $mu_oo$ forms a _subgroup_ of $T$ under multiplication. Moreover, every $mu_n$ is itself a subgroup of $mu_oo$ and called _cyclic_ as every element of $mu_n$ can be written as an exponentiation of _a primitive $n$-th root of identity_. Finally, $T$, as you might have imagined, is called the _circle group_, and is also a subgroup of a much larger group $U(CC)$, called the _unit group of the complex ring_.
 
     $ mu_n <= mu_oo <= T <= U(CC) $
   ]
@@ -431,22 +429,26 @@ You may now submit your work.
   - If you understood the question and are sure you have solved it, mark #sym.circle in the Evaluation column.
 ]
 
-#let total-questions = 11
-#let rows = calc.ceil(total-questions / 2)
+#context {
+  // Derive the question count from the live section counter so the sheet never
+  // drifts when questions are added or removed.
+  let total-questions = section-counter.final().first()
+  let rows = calc.ceil(total-questions / 2)
 
-#align(center, table(
-  columns: (auto, auto, auto, auto),
-  stroke: 0.5pt,
-  table.header([*No.*], [*Evaluation*], [*No.*], [*Evaluation*]),
-  ..range(1, rows + 1)
-    .map(n => (
-      [Q#n],
-      [],
-      if n + rows <= total-questions { [Q#(n + rows)] } else { [] },
-      [],
-    ))
-    .flatten(),
-))
+  align(center, table(
+    columns: (auto, auto, auto, auto),
+    stroke: 0.5pt,
+    table.header([*No.*], [*Evaluation*], [*No.*], [*Evaluation*]),
+    ..range(1, rows + 1)
+      .map(n => (
+        [Q#n],
+        [],
+        if n + rows <= total-questions { [Q#(n + rows)] } else { [] },
+        [],
+      ))
+      .flatten(),
+  ))
+}
 
 #emph-block[
   There are these additional questions as well; feel free to answer them.
