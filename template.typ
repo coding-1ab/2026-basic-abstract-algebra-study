@@ -1,6 +1,6 @@
 #import "./exm/lib/lib.typ": (
-  blank, colorgreen, colorred, docmode, mcq as exm-mcq, question as exm-question, section as exm-section,
-  section-counter,
+  blank as exm-blank, colorgreen, colorred, docmode, mcq as exm-mcq, question as exm-question,
+  section as exm-section, section-counter,
 )
 #import "@preview/theorion:0.6.0": cosmos, set-inherited-levels, show-theorion, theorem-counter
 #import cosmos.simple: make-frame, render-fn
@@ -8,7 +8,21 @@
 
 // vars
 
-#let show-answers = sys.inputs.at("answers", default: "false") == "true"
+#let is-global-ans = sys.inputs.at("answers", default: "false") == "true"
+#let sol-q = sys.inputs.at("sol-q", default: none)
+#let has-any-sol = is-global-ans or sol-q != none
+
+// The exm helpers (ans, mcq fills, blank) reveal answers when `docmode == "sol"`.
+// This is the document-wide default mode.
+#let default-docmode = if has-any-sol { "sol" } else { "screen" }
+
+// Whether the *current* question should reveal its answer: true in full-solution
+// mode, or when this specific question was picked via `--input sol-q=N`.
+// Must be called inside a `context` — it reads the live section counter.
+#let show-ans-here() = {
+  let q-num = section-counter.get().at(0)
+  is-global-ans or (sol-q != none and sol-q == str(q-num))
+}
 
 // colors
 #let cl-orange = rgb("#fe580f")
@@ -83,14 +97,21 @@
   ]
 }
 
-#let question = exm-question.with(
-  ansbox: show-answers,
-  color: solution-color,
-  color-text: text-color,
-)
+// The exm helpers (ans, mcq fills, blank) reveal answers when `docmode == "sol"`,
+// so each answer-bearing wrapper sets the mode for its own question right before
+// rendering. We deliberately do NOT restore it afterwards: a question body can
+// itself contain a `#blank`, and restoring would reset the mode mid-question and
+// leak the answer that follows. Since every wrapper keys off the section counter,
+// nested wrappers in the same question always agree, and the next question resets
+// the mode anyway.
+#let question(..args) = context {
+  let reveal = show-ans-here()
+  docmode.update(if reveal { "sol" } else { "screen" })
+  exm-question(ansbox: reveal, color: solution-color, color-text: text-color, ..args)
+}
 
-#let long-answer(body) = {
-  if show-answers {
+#let long-answer(body) = context {
+  if show-ans-here() {
     block(
       width: 100%,
       breakable: true, // make the #long-answer breakable
@@ -117,15 +138,21 @@
       [ #text(primary-color)[*#label*] #choice-text ]
     })
 
-  // We call the original mcq function.
-  // 1. We pass the 'question' exactly as it was.
-  // 2. We pass our new 'numbered-choices' array.
-  // 3. We unpack '..args', which perfectly forwards the answer index, points,
-  //    multi, cols, and any other configuration directly to the original function.
-  exm-mcq(question, numbered-choices, ansbox: show-answers, color: solution-color, color-text: text-color, ..args)
+  context {
+    let reveal = show-ans-here()
+    // exm-mcq fills the correct choice and prints the explanation based on the
+    // doc mode, so toggle it per question (not just the answer box via `ansbox`).
+    docmode.update(if reveal { "sol" } else { "screen" })
+    exm-mcq(question, numbered-choices, ansbox: reveal, color: solution-color, color-text: text-color, ..args)
+  }
 }
 
-#let blank = blank.with(color: solution-color)
+#let blank(..args) = context {
+  let reveal = show-ans-here()
+  // exm-blank reveals its answer based on the doc mode, so toggle it per question.
+  docmode.update(if reveal { "sol" } else { "screen" })
+  exm-blank(..args, color: solution-color)
+}
 
 // custom macros
 
@@ -144,7 +171,7 @@
   version: none,
 ) = {
   // etc dynamic
-  docmode.update(if show-answers { "sol" } else { "screen" })
+  docmode.update(default-docmode)
 
   // set / show
 
@@ -264,8 +291,10 @@
           stack(
             spacing: 2.4em,
             text(size: 36pt, weight: "bold", font: title-font, emp-title),
-            text(size: 28pt, weight: "semibold", font: title-font, context {
-              if show-answers {
+            text(size: 28pt, weight: "semibold", font: title-font, {
+              if sol-q != none {
+                text(fill: solution-color)[#upper[Solution - Q#sol-q]]
+              } else if is-global-ans {
                 text(fill: solution-color)[#upper[Solutions]]
               } else {
                 text(fill: primary-color)[#upper[Question paper]]
@@ -302,4 +331,8 @@
   )
 
   doc
+
+  // Expose the total number of questions so the build system can discover it
+  // with `typst query <src> "<question-count>"` instead of guessing.
+  context [#metadata(section-counter.final().first()) <question-count>]
 }
