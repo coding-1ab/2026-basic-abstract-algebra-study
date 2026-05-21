@@ -70,6 +70,4 @@ watch src q='':
 
 # Remove every generated PDF and solution directory.
 clean:
-    @find {{handouts}} -maxdepth 1 -type f -name '*.pdf' -delete
-    @find {{handouts}} -type d -name '*-sol' -exec rm -rf {} +
-    @find . -maxdepth 1 -type f -name '*.pdf' -delete
+    @find . -maxdepth 3 -type f -name '*.pdf' -delete
