@@ -254,6 +254,7 @@
     #truestmt
 
     #proof[
+
       *Forward.* Let $x$ be an arbitrary element such that $x in A union B$. We consider two mutually exclusive cases:
 
       + *Case 1 ($x in A inter B$)* \
@@ -262,9 +263,7 @@
       + *Case 2 ($x in.not A inter B$)* \
         Since $x in A union B$ but $x in.not A inter B$, by the definition of symmetric difference, $x in A triangle B$. By our assumption ($A triangle B subset C$), this implies $x in C$. Therefore, $x in (A inter B) union C$.
 
-      Since $x in (A inter B) union C$ holds true in both cases, we conclude:
-
-      $ A union B subset (A inter B) union C $
+      Since $x in (A inter B) union C$ holds true in both cases, we conclude that  $A union B subset (A inter B) union C$.
 
       *Backward.* Let $x$ be an arbitrary element such that $x in A triangle B$. By definition of the symmetric difference:
 
@@ -274,11 +273,7 @@
 
       $ x in (A inter B) union C $
 
-      This statement means that $x in A inter B$ or $x in C$. However, we already established that $x in.not A inter B$. Therefore, it must be true that $x in C$.
-
-      Consequently, we conclude:
-
-      $ A triangle B subset C $
+      This statement means that $x in A inter B$ or $x in C$. However, we already established that $x in.not A inter B$. Therefore, it must be true that $x in C$. Consequently, we conclude that $A triangle B subset C$.
     ]
   ]
 ]
@@ -302,6 +297,8 @@
       ]
 
       If you're up for a challenge, try showing the symmetry and transitivity of the congruence used here.
+
+      The real name of $M(k)$ is _coset_. You just proved that they create a complete _partition_ on $ZZ$!
     ]
 
   + #question[
@@ -309,7 +306,17 @@
 
       $ M(a) + M(b) = M(a + b) $
     ][
+      #proof[
+        Let $a$ and $b$ be integers.
 
+        *Forward.* If $x$ is an element of $M(a) + M(b)$, there exist two integers $y$, $z$ such that $y equiv a thick (mod n)$ and $z equiv b thick (mod n)$ and $x = y + z$. As $x - a - b = (y - a) + (z - b)$ is a multiple of $n$, $x in M(a + b)$.
+
+        *Backward.* If $x$ is an element of $M(a + b)$, there $x = k + a + b$ where $k$ is a multiple of $n$. Then, there exist two integers $k + a$, $b$ such that $k + a equiv a thick (mod n)$ and $b equiv b thick (mod n)$ and $x = (k + a) + b$.
+
+        By extensionality, we conclude that $M(a) + M(b) = M(a + b)$.
+      ]
+
+      In such a case, we often say that _the operation is well-defined on cosets_. A subgroup that has such a property, such as $n ZZ$, is called _normal_. Moreover, we can now view $M$ as a special kind of function, called a _canonical homomorphism to the quotient_.
     ]
 ]
 
@@ -380,7 +387,7 @@
 
     Keep in mind that multiplication of a complex number is a _rotation_ on the complex plane. Thus, what we've just shown here is that the angle (_argument_) of $x$ does not divide the circle evenly. Observe, or at least, feel how the problem of evenly dividing a circle turns into a problem of solving a solution to a modular congruence. The roots of unity can be visualized as an exact rotations of a circle, justifying why they are called _cyclic groups_.
 
-    Of course, there's a shortcut to the above result. @thm:niven guarantees that every $arctan$ of rational number that isn't $0$, $1$, or $1/2$ to be always irrational multiple of $pi$. In the above case, $arctan(3/4)$ should be an irrational multiple of $pi$, which makes it never reaches to $1$ how many $n$ times it rotates.
+    Of course, there's a shortcut to the above result. @thm:niven guarantees that every $arctan$ of rational number that isn't $0$, $1$, or $1/2$ to be always irrational multiple of $pi$. In the above case, $arctan(3/4)$ should be an irrational multiple of $pi$, which makes it never reaches to $1$ no matter how many times it rotates.
 
     #theorem[Niven][
       If $theta in [0, pi / 2]$ and both $theta / pi$ and $sin theta$ are rational, then $sin theta$ is either $0$, $1$, or $1/2$.
@@ -403,6 +410,10 @@
     $ mu_n <= mu_oo <= T <= U(CC) $
   ]
 ]
+
+End.
+
+You may now submit your work.
 
 #pagebreak()
 
