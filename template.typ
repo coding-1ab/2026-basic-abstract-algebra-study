@@ -26,11 +26,6 @@
 
 // theorion
 
-// Make every theorion frame share `theorem-counter` (the default counter behind
-// definition, note, lemma, proposition, …) and count linearly across sections
-// instead of inheriting two heading levels.
-#set-inherited-levels(0)
-
 #let (_, inline-note-box, inline-note, show-inline-note) = make-frame(
   "inline-note",
   "Note",
@@ -157,6 +152,11 @@
   show: show-theorion
   show: show-inline-note
   show: show-hint
+
+  // Make every theorion frame share `theorem-counter` (the default counter behind
+  // definition, note, lemma, proposition, …) and count linearly across sections
+  // instead of inheriting two heading levels.
+  set-inherited-levels(0)
 
   // heading bookmark
   show heading.where(supplement: [qbookmark]): it => place(hide(it.body))
