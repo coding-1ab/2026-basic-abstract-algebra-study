@@ -195,7 +195,7 @@
     ]
 
     #proof[
-      For two positive integers $n$ and $m$, assume $x$ is an element of $mu_n$. By the definition, we have $x^n = 1$. By rasing both sides to the $m$th power, we get $(x^n)^m = x^(n m) = 1^m = 1$. From here, we conclude that $x$ is a solution to the equation $x^(n m) = 1$, thus $x in mu_(n m)$.
+      For two positive integers $n$ and $m$, assume $x$ is an element of $mu_n$. By the definition, we have $x^n = 1$. By raising both sides to the $m$th power, we get $(x^n)^m = x^(n m) = 1^m = 1$. From here, we conclude that $x$ is a solution to the equation $x^(n m) = 1$, thus $x in mu_(n m)$.
 
       Therefore, $mu_n$ is a subset of $mu_(n m)$.
     ]
@@ -236,7 +236,7 @@
     #proof[
       With the @def:set-ext in mind, the assumption says that $ZZ subset n ZZ$ and $n ZZ subset ZZ$ for some integer $n$. As the latter is pretty obvious, we will focus on the former.
 
-      Recall the definition that $n ZZ$ is the set of all multiples of $n$. And by @def:subset
+      Recall the definition that $n ZZ$ is the set of all multiples of $n$. And by the @def:subset, every integer $x$ should be a multiple of $n$. If $x = 1$, then $1$ should be a multiple of $n$ as well. As the only integer factors of $1$ are $1$ and $-1$, $n$ must be either $1$ or $-1$.
     ]
   ]
 ]
@@ -311,7 +311,7 @@
 
         *Forward.* If $x$ is an element of $M(a) + M(b)$, there exist two integers $y$, $z$ such that $y equiv a thick (mod n)$ and $z equiv b thick (mod n)$ and $x = y + z$. As $x - a - b = (y - a) + (z - b)$ is a multiple of $n$, $x in M(a + b)$.
 
-        *Backward.* If $x$ is an element of $M(a + b)$, there $x = k + a + b$ where $k$ is a multiple of $n$. Then, there exist two integers $k + a$, $b$ such that $k + a equiv a thick (mod n)$ and $b equiv b thick (mod n)$ and $x = (k + a) + b$.
+        *Backward.* If $x$ is an element of $M(a + b)$, then $x = k + a + b$ where $k$ is a multiple of $n$. Then, there exist two integers $k + a$, $b$ such that $k + a equiv a thick (mod n)$ and $b equiv b thick (mod n)$ and $x = (k + a) + b$.
 
         By extensionality, we conclude that $M(a) + M(b) = M(a + b)$.
       ]
@@ -380,7 +380,7 @@
 
       $ (4 + 3 i)^(k + 1) = (A_k + B_k i) (4 + 3 i) = (4 A_k - 3 B_k) + (3 A_k + 4 B_k) i $
 
-      Thus, $A_(k + 1) = 4 A_k - 3 B_k$ and $B_(k + 1) = 3 A_k + 4 B_k$. As $A_1 = 4$ and $B_1 = 3$, we can sure that every $A_k$, $B_k$ are integers by an induction. From here, it isn't hard to show that $A_k equiv 3 B_k thick (mod 5)$ and $B_(k + 1) equiv 3 B_k thick (mod 5)$. As $B_1 = 3$, we can conclude that every $B_k$ is essentially congruent to the power of $3$, $B_k equiv 3^k thick (mod 5)$.
+      Thus, $A_(k + 1) = 4 A_k - 3 B_k$ and $B_(k + 1) = 3 A_k + 4 B_k$. As $A_1 = 4$ and $B_1 = 3$, we can ensure that every $A_k$, $B_k$ are integers by induction. From here, it is not hard to show that $A_k equiv 3 B_k thick (mod 5)$ and $B_(k + 1) equiv 3 B_k thick (mod 5)$. As $B_1 = 3$, we can conclude that every $B_k$ is essentially congruent to a power of $3$, namely $B_k equiv 3^k thick (mod 5)$.
 
       Since $(4 + 3 i)^n = 5^n$ is not an imaginary number, the imaginary part, $B_n$ must be $0$ when $k = n$. However, the congruence equation $3^n equiv 0 thick (mod 5)$ does not have a solution, as $3 perp 5$. Thus, such positive integer $n$ does not exist, contradicting with the assumption. Therefore, $x$ cannot be an $n$-th root of unity for any positive integer $n$.
     ]
