@@ -298,7 +298,7 @@ As a binary operation is a function, the result of $f(x, y)$ (or $x * y$) should
 // yes
 
 + $mod$ on $ZZ^+$, $mod(x, y)$.
-// yes
+// no
 
 + Average on $QQ$, $(x + y) slash 2$.
 // yes
