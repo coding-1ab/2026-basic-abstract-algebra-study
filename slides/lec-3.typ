@@ -342,7 +342,7 @@ As a binary operation is a function, the result of $f(x, y)$ (or $x * y$) should
 + Concatenation on $Sigma^*$, the set of all strings, $x "++" y$.
 // yes
 
-+ Conditional on $scr(P)$, the set of all true propositions, $p -> q$.
++ Conditional on $scr(P)$, the set of all false propositions, $p -> q$.
 // no
 
 + Tetration on $ZZ^+$, $x arrow.t arrow.t y$.
