@@ -279,7 +279,7 @@ As a binary operation is a function, the result of $f(x, y)$ (or $x * y$) should
 + Addition on $ZZ$, $x + y$.
 // yes
 
-+ Subtraction on $ZZ$, $x + y$.
++ Subtraction on $ZZ$, $x - y$.
 // yes
 
 + Multiplication on $ZZ$, $x y$.
