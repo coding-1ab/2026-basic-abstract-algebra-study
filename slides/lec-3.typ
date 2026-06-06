@@ -249,14 +249,21 @@ Map each ordered pair to an operation:
 
 == Binary operations are functions!
 
-A set $S$ is given.
+Let $S$ be a set.
 
 #definition[Binary operation][
   A function $f : S times S -> S$ is called a _binary operation_ on $S$.
 ]
 
-#note[
-  It is often denoted with the infix notation $f(x, y) = x * y$.
+#definition[Binary operation (rephrase)][
+  A _binary operation_ of a _set_ $X$ is an assignment such that:
+
+  + For every two elements in the set, an element of the set is assigned.
+  + Such an assignment is unique.
+
+  If $x$ and $y$ are map to an element $z$, then we often use infix notation:
+
+  $ x ast.op.o y = z $
 ]
 
 == Closedness
@@ -345,8 +352,8 @@ As a binary operation is a function, the result of $f(x, y)$ (or $x * y$) should
 + Conditional on $scr(P)$, the set of all false propositions, $p -> q$.
 // no
 
-+ Tetration on $ZZ^+$, $x arrow.t arrow.t y$.
-// yes
+// + Tetration on $ZZ^+$, $x arrow.t arrow.t y$.
+// // yes
 
 + Multiplication on $mu_1212$, the set of all $1212$-th roots of unity. $x y$.
 // yes
@@ -361,9 +368,6 @@ As a binary operation is a function, the result of $f(x, y)$ (or $x * y$) should
 // yes
 
 + Function composition on $S_2$, the set of all bijective functions from ${ 0, 1 }$ to ${ 0, 1 }$, $g compose f$.
-// yes
-
-+ Function composition on $ZZ^ZZ$, the set of all injective functions from $ZZ$ to $ZZ$, $g compose f$.
 // yes
 
 == Commutativity
